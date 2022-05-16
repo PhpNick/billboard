@@ -49,9 +49,11 @@ class CardsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($zip, $street)
     {
-        //
+        $card = Card::locatedAt($zip, $street)->first();
+
+        return view('cards.show', compact('card'));
     }
 
     /**
