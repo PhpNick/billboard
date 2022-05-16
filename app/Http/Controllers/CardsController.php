@@ -38,6 +38,8 @@ class CardsController extends Controller
     {
         Card::create($request->all());
 
+        flash()->success('Успешно!', 'Объявление отправлено');
+
         return redirect()->back();
     }
 

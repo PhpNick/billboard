@@ -35,9 +35,8 @@
 	        <ul class="dropdown-menu" aria-labelledby="dropdown05">
 	          <li><a class="dropdown-item" href="/cards/create">Разместить объявление</a></li>
 	          <hr class="mt-2 mb-3"/>
-	          <li><a class="dropdown-item" href="#">Все объявления</a></li>
 	          <li><a class="dropdown-item" href="#">Мои объявления</a></li>
-	          <li><a class="dropdown-item" href="#">Популярные объявления</a></li>
+	          <li><a class="dropdown-item" href="#">Избранные объявления</a></li>
 	        </ul>
 	      </li>	      
 	        </ul>
@@ -56,5 +55,7 @@
 	</div>
 
 	<script src="/js/app.js"></script>
+	@include('flash')
+	
 </body>
 </html>
