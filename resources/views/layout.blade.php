@@ -56,6 +56,7 @@
 
 	<script src="/js/app.js"></script>
 	@include('flash')
+	@yield('scripts.footer')
 	
 </body>
 </html>

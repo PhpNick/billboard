@@ -29,7 +29,8 @@ class CardRequest extends FormRequest
             'street' => 'required',
             'zip' => 'required',
             'price' => 'required|integer',
-            'description' => 'required'
+            'description' => 'required',
+            'photo' => 'required'
         ];
     }
 }

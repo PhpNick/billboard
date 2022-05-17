@@ -23,12 +23,12 @@ class Card extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public function scopeLocatedAt($query, $zip, $street)
+    public static function locatedAt($zip, $street)
     {
         $street = translit_reverse($street);
         $zip = translit_reverse($zip);
 
-        return $query->where(compact('zip', 'street'));
+        return static::where(compact('zip', 'street'))->first();
     }
 
     public function getPriceAttribute($price)
