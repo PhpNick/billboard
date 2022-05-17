@@ -77,15 +77,26 @@
 @section('scripts.footer')
  <script>
  	const input = document.querySelector('input[type="file"]');
-	const pond = FilePond.create(input, {
+	FilePond.create(input, {
 	  	server: {
 	  		url: '/photos',
 	  		headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'}
 	  	},
 	  	acceptedFileTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/bmp'],
-	  	maxFileSize: '3MB'
+	  	maxFileSize: '3MB',
 	  })
 	;
+
+	const pond = document.querySelector('.filepond--root');
+
+	// listen for events
+	pond.addEventListener('FilePond:addfile', (e) => {
+	    let fieldset = document.querySelector('.filepond--data');
+	    let photos = fieldset.children;
+	    Array.prototype.forEach.call(photos, function(photo, index, photos) {
+		  photo.setAttribute("name", "photo[]");
+		})
+	});
 
 
  </script>

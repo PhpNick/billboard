@@ -37,9 +37,16 @@ class CardsController extends Controller
      */
     public function store(CardRequest $request)
     {
-        dd($request);
+        $card = Card::create($request->all());
 
-        Card::create($request->all());
+        if(is_array($request->photo))
+        {
+            foreach ($request->photo as $photo) {
+                $this->addPhoto($card, $photo);
+            }
+        } 
+        else   
+            $this->addPhoto($card, $request->photo);
 
         flash()->success('Успешно!', 'Объявление отправлено');
 
@@ -59,26 +66,22 @@ class CardsController extends Controller
         return view('cards.show', compact('card'));
     }
 
-    public function addTempPhoto(Request $request)
+    public function uploadPhotos(Request $request)
     {
         $this->validate($request, [
             'photo' => 'required|mimes:jpg,jpeg,png,bmp'
         ]);
 
-        $photo = Photo::fromTempForm($request->file('photo'));
+        $photo = Photo::uploadPhotos($request->file('photo'));
 
         return $photo;
     }    
 
-    public function addPhoto($zip, $street, Request $request)
+    public function addPhoto(Card $card, $photo)
     {
-        $this->validate($request, [
-            'photo' => 'required|mimes:jpg,jpeg,png,bmp'
-        ]);
+        $photo = Photo::fromForm($photo);
 
-        $photo = Photo::fromForm($request->file('photo'));
-
-        Card::locatedAt($zip, $street)->addPhoto($photo);
+        $card->addPhoto($photo);
     }    
 
     /**

@@ -30,7 +30,6 @@ class CardRequest extends FormRequest
             'zip' => 'required',
             'price' => 'required|integer',
             'description' => 'required',
-            'photo' => 'required'
         ];
     }
 }

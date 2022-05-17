@@ -12,4 +12,4 @@ Route::resource('cards', CardsController::class);
 
 Route::get('{zip}/{street}', [CardsController::class, 'show']);
 
-Route::post('photos', [CardsController::class, 'addTempPhoto']);
+Route::post('photos', [CardsController::class, 'uploadPhotos']);

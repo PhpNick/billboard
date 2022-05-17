@@ -34,5 +34,10 @@ class Card extends Model
     public function getPriceAttribute($price)
     {
         return number_format($price, 2, ',', ' ') . ' руб.';
-    }    
+    } 
+
+    public function addPhoto(Photo $photo)
+    {
+        return $this->photos()->save($photo);
+    }   
 }
