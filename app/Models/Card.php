@@ -28,7 +28,7 @@ class Card extends Model
         $street = translit_reverse($street);
         $zip = translit_reverse($zip);
 
-        return static::where(compact('zip', 'street'))->first();
+        return static::where(compact('zip', 'street'))->firstOrFail();
     }
 
     public function getPriceAttribute($price)

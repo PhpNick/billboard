@@ -12,7 +12,7 @@ class CardsController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['show']]);
     }
 
     /**
@@ -83,9 +83,9 @@ class CardsController extends Controller
         return $photo;
     }    
 
-    public function addPhoto(Card $card, $photo)
+    public function addPhoto(Card $card, $name)
     {
-        $photo = Photo::fromForm($photo);
+        $photo = Photo::where(compact('name'))->firstOrFail();
 
         $card->addPhoto($photo);
     }    

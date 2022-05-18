@@ -16,10 +16,12 @@ class CreateCardPhotosTable extends Migration
         Schema::create('card_photos', function (Blueprint $table) {
             $table->id();
 
-            $table->biginteger('card_id')->unsigned();
+            $table->biginteger('card_id')->unsigned()->nullable();
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
+            $table->string('name');
             $table->string('path');
+            $table->string('thumbnail_path');
             $table->timestamps();
         });
     }
