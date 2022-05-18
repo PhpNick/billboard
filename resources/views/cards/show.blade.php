@@ -9,7 +9,7 @@
 		<div class="col-md-4">
 			<h4>Адрес: {!! $regions::all()[$card->region] !!}, {!! $card->city !!}, {!! $card->street !!}, {!! $card->zip !!}</h4>
 
-			<h4>Цена: {!! $card->price !!}</h4>
+			<h3><strong>Цена: {!! $card->price !!}</strong></h3>
 
 			<div>
 				{!! nl2br($card->description) !!}
