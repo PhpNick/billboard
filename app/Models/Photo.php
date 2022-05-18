@@ -26,7 +26,7 @@ class Photo extends Model
     {
         $photo = new static;
 
-        $photo->path = $photo->baseDir . '/' . $file;
+        $photo->path = '/' . $photo->baseDir . '/' . $file;
 
         return $photo;
     } 
