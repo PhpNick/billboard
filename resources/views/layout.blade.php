@@ -16,7 +16,7 @@
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarsExample04">
-	    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+	    <ul class="navbar-nav me-auto">
 	      <li class="nav-item">
 	        <a class="nav-link {{ (request()->is('/')) ? 'active' : '' }}" aria-current="page" href="/">Главная</a>
 	      </li>
@@ -39,12 +39,46 @@
 	          <li><a class="dropdown-item" href="#">Избранные объявления</a></li>
 	        </ul>
 	      </li>	      
-	        </ul>
-	      </li>
 	    </ul>
-	    <form role="search">
+
+		<ul class="navbar-nav">
+		<!-- Authentication Links -->
+		@guest
+		    @if (Route::has('login'))
+		        <li class="nav-item">
+		            <a class="nav-link" href="{{ route('login') }}">Вход</a>
+		        </li>
+		    @endif
+
+		    @if (Route::has('register'))
+		        <li class="nav-item">
+		            <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
+		        </li>
+		    @endif
+		@else
+		    <li class="nav-item dropdown">
+		        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+		            {{ Auth::user()->name }}
+		        </a>
+
+		        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+		            <li><a class="dropdown-item" href="{{ route('logout') }}"
+		               onclick="event.preventDefault();
+		                             document.getElementById('logout-form').submit();">
+		                Выход
+		            </a>
+
+		            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+		                @csrf
+		            </form>
+		        	</li>
+		        </ul>
+		    </li>
+		@endguest
+		</ul>
+		<form role="search">
 	      <input class="form-control" type="search" placeholder="Поиск по объявлениям" aria-label="Search">
-	    </form>
+	    </form>			    
 	  </div>
 	</div>
 	</nav>	
