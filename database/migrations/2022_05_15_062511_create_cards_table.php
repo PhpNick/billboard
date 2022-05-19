@@ -23,6 +23,8 @@ class CreateCardsTable extends Migration
             $table->integer('price');
             $table->text('description');
             $table->biginteger('user_id')->unsigned();
+            $table->biginteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

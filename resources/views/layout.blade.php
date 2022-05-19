@@ -23,10 +23,9 @@
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Рубрики</a>
 	        <ul class="dropdown-menu" aria-labelledby="dropdown04">
-	          <li><a class="dropdown-item" href="#">Одежда</a></li>
-	          <li><a class="dropdown-item" href="#">Электроника</a></li>
-	          <li><a class="dropdown-item" href="#">Недвижимость</a></li>
-	          <li><a class="dropdown-item" href="#">Животные</a></li>
+	        	@foreach ($categories as $category)
+	        		<li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+	        	@endforeach	
 	        </ul>
 	      </li>
 
