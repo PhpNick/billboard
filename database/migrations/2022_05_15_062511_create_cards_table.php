@@ -15,12 +15,14 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('region', 50);
             $table->string('city', 50);
             $table->string('street');
             $table->string('zip', 10);
             $table->integer('price');
             $table->text('description');
+            $table->biginteger('user_id')->unsigned();
             $table->timestamps();
         });
     }

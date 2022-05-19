@@ -6,10 +6,15 @@
 
 	<div class="row">
 
-		<div class="col-md-4">
-			<h4>Адрес: {!! $regions::all()[$card->region] !!}, {!! $card->city !!}, {!! $card->street !!}, {!! $card->zip !!}</h4>
+		<div class="col-md-12">
+			<h2>{{ $card->title }}</h2>
+		</div>
 
-			<h3><strong>Цена: {!! $card->price !!}</strong></h3>
+		<div class="col-md-4">
+
+			<h4>Адрес: {{ $regions::all()[$card->region] }}, {{ $card->city }}, {{ $card->street }}, {{ $card->zip }}</h4>
+
+			<h3><strong>Цена: {{ $card->price }}</strong></h3>
 
 			<div>
 				{!! nl2br($card->description) !!}

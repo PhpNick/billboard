@@ -12,7 +12,7 @@ class CardsController extends Controller
     
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -22,7 +22,7 @@ class CardsController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.home');
     }
 
     /**
@@ -43,16 +43,28 @@ class CardsController extends Controller
      */
     public function store(CardRequest $request)
     {
-        $card = Card::create($request->all());
+        $card = Card::create([
+            'user_id' => auth()->id(),
+            'title' => request('title'),
+            'region' => request('region'),
+            'city' => request('city'),
+            'street' => request('street'),
+            'zip' => request('zip'),
+            'price' => request('price'),
+            'description' => request('description'),
+        ]);
 
-        if(is_array($request->photo))
+        if($request->photo)
         {
-            foreach ($request->photo as $photo) {
-                $this->addPhoto($card, $photo);
-            }
-        } 
-        else   
-            $this->addPhoto($card, $request->photo);
+            if(is_array($request->photo))
+            {
+                foreach ($request->photo as $photo) {
+                    $this->addPhoto($card, $photo);
+                }
+            } 
+            else   
+                $this->addPhoto($card, $request->photo);
+        }
 
         flash()->success('Успешно!', 'Объявление отправлено');
 

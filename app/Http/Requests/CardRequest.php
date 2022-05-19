@@ -24,6 +24,7 @@ class CardRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'required',
             'region' => 'required',
             'city' => 'required',
             'street' => 'required',

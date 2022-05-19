@@ -10,12 +10,14 @@ class Card extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'region',
         'city',
         'street',
         'zip',
         'price',
-        'description'
+        'description',
+        'user_id'
     ];
 
     public function photos()

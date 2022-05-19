@@ -1,12 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CardsController;
+use App\Http\Controllers\PagesController;
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', [CardsController::class, 'index']);
 
 Route::resource('cards', CardsController::class);
 

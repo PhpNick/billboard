@@ -20,6 +20,11 @@
 
 		<div class="col-md-6 d-grid gap-2">
 			{{ csrf_field() }}
+
+			<div class="form-group">
+				<label for="title">Заголовок:</label>
+				<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
+			</div>			
 			
 			<div class="form-group">
 				<label for="region">Регион:</label>
