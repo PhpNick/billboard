@@ -18,7 +18,9 @@
 
 			<div>
 				{!! nl2br($card->description) !!}
-			</div>				
+			</div>	
+			<hr>
+			<small>Рубрика: {{ $card->category->name }}</small>			
 		</div>
 
 		<div class="col-md-8">

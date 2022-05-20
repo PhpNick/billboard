@@ -22,6 +22,17 @@
 			{{ csrf_field() }}
 
 			<div class="form-group">
+				<label for="category_id">Рубрика:</label>
+				<select name="category_id" id="category_id" class="form-control" required>
+					
+					@foreach ($categories as $category)
+					<option value="{{ $category->id }}" {{ old("category_id") == $category->id ? "selected" : "" }}>{{ $category->name }}</option>
+					@endforeach
+
+				</select>
+			</div>			
+
+			<div class="form-group">
 				<label for="title">Заголовок:</label>
 				<input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}" required>
 			</div>			

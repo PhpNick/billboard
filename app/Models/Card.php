@@ -17,7 +17,8 @@ class Card extends Model
         'zip',
         'price',
         'description',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
 
     public function photos()
@@ -25,13 +26,10 @@ class Card extends Model
         return $this->hasMany(Photo::class);
     }
 
-    public static function locatedAt($zip, $street)
+    public function category()
     {
-        $street = translit_reverse($street);
-        $zip = translit_reverse($zip);
-
-        return static::where(compact('zip', 'street'))->firstOrFail();
-    }
+        return $this->belongsTo(Category::class);
+    }    
 
     public function getPriceAttribute($price)
     {
@@ -41,5 +39,20 @@ class Card extends Model
     public function addPhoto(Photo $photo)
     {
         return $this->photos()->save($photo);
-    }   
+    }
+
+    public static function getCards(Category $category)
+    {
+        if ($category->exists) {
+        return static::where(compact('id'))->all();
+        }
+        return static::all();
+    }
+
+    public function firstPhotoPath()
+    {
+        if($this->photos()->first())
+            return '/' . $this->photos()->firstOrFail()->thumbnail_path;
+        return "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1902/pavelstasevich190200120/124934975-no-image-available-icon-vector-flat.jpg?ver=6";
+    }            
 }

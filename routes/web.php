@@ -8,7 +8,7 @@ Route::get('/', [CardsController::class, 'index']);
 
 Route::resource('cards', CardsController::class);
 
-Route::get('{zip}/{street}', [CardsController::class, 'show']);
+Route::get('{id}', [CardsController::class, 'show']);
 
 Route::post('photos', [CardsController::class, 'uploadPhotos']);
 

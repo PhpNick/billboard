@@ -9,41 +9,20 @@
         <a href="/cards/create" class="btn btn-info btn-lg">Разместить объявление</a>
       </div>
     </div>
-
+    @foreach($cards->chunk(4) as $set)
     <div class="row">
-
+        @foreach($set as $card)
         <div class="col-md-3 col-sm-6">
           <div class="card my-2">
-            <img src="https://images.adsttc.com/media/images/5e68/48ed/b357/658e/fb00/0441/large_jpg/AM1506.jpg?1583892706" class="card-img-top" alt="...">
+            <img src="{{ $card->firstPhotoPath() }}" class="card-img-top" alt="">
             <div class="card-body">
-              <h5 class="card-title">100 000 руб.</h5>
-              <p class="card-text">Заголовок объявления</p>
-              <a href="#" class="btn btn-info">Просмотр</a>
+              <h5 class="card-title">{{ $card->price }}</h5>
+              <p class="card-text">{{ $card->title }}</p>
+              <a href="{{ $card->id }}" class="btn btn-info">Просмотр</a>
             </div>
           </div>          
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card my-2">
-            <img src="https://images.adsttc.com/media/images/5e68/48ed/b357/658e/fb00/0441/large_jpg/AM1506.jpg?1583892706" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">100 000 руб.</h5>
-              <p class="card-text">Заголовок объявления</p>
-              <a href="#" class="btn btn-info">Просмотр</a>
-            </div>
-          </div>          
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-          <div class="card my-2">
-            <img src="https://images.adsttc.com/media/images/5e68/48ed/b357/658e/fb00/0441/large_jpg/AM1506.jpg?1583892706" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">100 000 руб.</h5>
-              <p class="card-text">Заголовок объявления</p>
-              <a href="#" class="btn btn-info">Просмотр</a>
-            </div>
-          </div>          
-        </div>                
-
-    </div>    
+        </div>              
+        @endforeach
+    </div> 
+    @endforeach   
 @stop

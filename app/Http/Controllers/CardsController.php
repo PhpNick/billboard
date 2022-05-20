@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CardRequest;
 use App\Models\Card;
 use App\Models\Photo;
+use App\Models\Category;
 
 class CardsController extends Controller
 {
@@ -20,9 +21,11 @@ class CardsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        return view('pages.home');
+        $cards = Card::getCards($category);
+
+        return view('pages.home', compact('cards'));
     }
 
     /**
@@ -52,6 +55,7 @@ class CardsController extends Controller
             'zip' => request('zip'),
             'price' => request('price'),
             'description' => request('description'),
+            'category_id' => request('category_id'),
         ]);
 
         if($request->photo)
@@ -77,9 +81,9 @@ class CardsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($zip, $street)
+    public function show($id)
     {
-        $card = Card::locatedAt($zip, $street);
+        $card = Card::where(compact('id'))->firstOrFail();
 
         return view('cards.show', compact('card'));
     }
