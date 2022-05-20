@@ -46,17 +46,9 @@ class CardsController extends Controller
      */
     public function store(CardRequest $request)
     {
-        $card = Card::create([
-            'user_id' => auth()->id(),
-            'title' => request('title'),
-            'region' => request('region'),
-            'city' => request('city'),
-            'street' => request('street'),
-            'zip' => request('zip'),
-            'price' => request('price'),
-            'description' => request('description'),
-            'category_id' => request('category_id'),
-        ]);
+        $card = auth()->user()->publish(
+            new Card($request->all())
+        );
 
         if($request->photo)
         {
@@ -72,7 +64,7 @@ class CardsController extends Controller
 
         flash()->success('Успешно!', 'Объявление отправлено');
 
-        return redirect()->back();
+        return redirect($card->id);
     }
 
     /**
