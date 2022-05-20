@@ -53,6 +53,6 @@ class Card extends Model
     {
         if($this->photos()->first())
             return '/' . $this->photos()->firstOrFail()->thumbnail_path;
-        return "https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1902/pavelstasevich190200120/124934975-no-image-available-icon-vector-flat.jpg?ver=6";
+        return "/img/no-image-available.jpg";
     }            
 }
