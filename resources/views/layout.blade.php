@@ -94,7 +94,7 @@
 
 	<footer class="footer mt-auto py-3 bg-white border-top text-center">
 	  <div class="container">
-	    <span class="text-muted">Доска бесплатных объявлений BillboardMe</span>
+	    <span class="text-muted">Доска бесплатных объявлений {{config('app.name')}}</span>
 	  </div>
 	</footer>	
 
