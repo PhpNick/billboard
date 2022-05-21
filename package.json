@@ -21,6 +21,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.1.1",
         "filepond": "^4.30.3",
         "filepond-plugin-file-validate-size": "^2.2.7",
         "filepond-plugin-file-validate-type": "^1.2.8",

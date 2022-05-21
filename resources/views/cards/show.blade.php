@@ -12,13 +12,14 @@
 
 		<div class="col-md-4">
 
-			<h4>Адрес: {{ $regions::all()[$card->region] }}, {{ $card->city }}, {{ $card->street }}, {{ $card->zip }}</h4>
+			<h4><i class="fas fa-map-marker-alt"></i> {{ $regions::all()[$card->region] }}, {{ $card->city }}, {{ $card->street }}, {{ $card->zip }}</h4>
 
-			<h3><strong>Цена: {{ $card->price }}</strong></h3>
+			<h3><strong><i class="fas fa-ruble-sign"></i> {{ $card->price }}</strong></h3>
 
 			<div>
 				{!! nl2br($card->description) !!}
-			</div>	
+			</div>
+			<a href="#" class="btn btn-info"><i class="fas fa-heart"></i> Добавить в избранное</a>	
 			<hr>
 			<small>Рубрика: {{ $card->category->name }}</small>			
 		</div>
