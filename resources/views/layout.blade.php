@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/app.css">
 	<title>{{config('app.name')}}</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 
 	<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
 	<div class="container-fluid">
@@ -91,6 +91,12 @@
 	<div class="container my-3">
 		@yield('content')
 	</div>
+
+	<footer class="footer mt-auto py-3 bg-white border-top text-center">
+	  <div class="container">
+	    <span class="text-muted">Доска бесплатных объявлений BillboardMe</span>
+	  </div>
+	</footer>	
 
 	<script src="/js/app.js"></script>
 	@include('flash')
