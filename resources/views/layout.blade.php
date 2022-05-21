@@ -82,10 +82,7 @@
 		        </ul>
 		    </li>
 		@endguest
-		</ul>
-		<form role="search">
-	      <input class="form-control" type="search" placeholder="Поиск по объявлениям" aria-label="Search">
-	    </form>			    
+		</ul>		    
 	  </div>
 	</div>
 	</nav>	
