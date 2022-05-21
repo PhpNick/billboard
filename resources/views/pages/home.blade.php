@@ -9,6 +9,13 @@
         <a href="/cards/create" class="btn btn-info btn-lg">Разместить объявление</a>
       </div>
     </div>
+
+    @if ($category->exists)
+      <h1>Объявления из рубрики: {{ $category->name }}</h1>
+    @else
+      <h1>Все объявления</h1>
+    @endif
+
     @foreach($cards->chunk(4) as $set)
     <div class="row">
         @foreach($set as $card)
@@ -18,7 +25,8 @@
             <div class="card-body">
               <h5 class="card-title">{{ $card->price }}</h5>
               <p class="card-text">{{ $card->title }}</p>
-              <a href="{{ $card->id }}" class="btn btn-info">Просмотр</a>
+
+              <a href="/category/{{ $card->category->id }}/card/{{ $card->id }}" class="btn btn-info">Просмотр</a>
             </div>
           </div>          
         </div>              

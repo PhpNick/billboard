@@ -44,7 +44,7 @@ class Card extends Model
     public static function getCards(Category $category)
     {
         if ($category->exists) {
-        return static::where(compact('id'))->all();
+        return static::where('category_id', $category->id)->get();
         }
         return static::all();
     }

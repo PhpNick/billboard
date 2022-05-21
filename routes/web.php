@@ -10,8 +10,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/', [CardsController::class, 'index']);
 
+Route::get('category/{category}', [CardsController::class, 'index']);
+
 Route::resource('cards', CardsController::class);
 
-Route::get('{id}', [CardsController::class, 'show']);
+Route::get('/category/{category}/card/{id}', [CardsController::class, 'show']);
 
 Route::post('photos', [CardsController::class, 'uploadPhotos']);

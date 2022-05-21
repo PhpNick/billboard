@@ -25,7 +25,7 @@ class CardsController extends Controller
     {
         $cards = Card::getCards($category);
 
-        return view('pages.home', compact('cards'));
+        return view('pages.home', compact('cards', 'category'));
     }
 
     /**
@@ -73,7 +73,7 @@ class CardsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($category, $id)
     {
         $card = Card::where(compact('id'))->firstOrFail();
 
