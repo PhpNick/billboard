@@ -34,7 +34,15 @@
 	        <ul class="dropdown-menu" aria-labelledby="dropdown05">
 	          <li><a class="dropdown-item" href="/cards/create">Разместить объявление</a></li>
 	          <hr class="mt-2 mb-3"/>
-	          <li><a class="dropdown-item" href="#">Мои объявления</a></li>
+
+	          @guest
+	          @if (Route::has('login'))
+	          <li><a class="dropdown-item" href="{{ route('login') }}">Мои объявления</a></li>
+	          @endif
+	          @else
+	          <li><a class="dropdown-item" href="/user/{{  Auth::id() }}">Мои объявления</a></li>
+	          @endguest
+	          
 	          <li><a class="dropdown-item" href="#">Избранные объявления</a></li>
 	        </ul>
 	      </li>	      

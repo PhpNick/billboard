@@ -41,11 +41,16 @@ class Card extends Model
         return $this->photos()->save($photo);
     }
 
-    public static function getCards(Category $category)
+    public static function getCards(Category $category, User $user)
     {
         if ($category->exists) {
         return static::where('category_id', $category->id)->get();
         }
+
+        if ($user->exists) {
+        return static::where('user_id', $user->id)->get();
+        }        
+        
         return static::all();
     }
 

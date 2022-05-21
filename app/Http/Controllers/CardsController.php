@@ -7,6 +7,7 @@ use App\Http\Requests\CardRequest;
 use App\Models\Card;
 use App\Models\Photo;
 use App\Models\Category;
+use App\Models\User;
 
 class CardsController extends Controller
 {
@@ -21,9 +22,9 @@ class CardsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index(Category $category, User $user)
     {
-        $cards = Card::getCards($category);
+        $cards = Card::getCards($category, $user);
 
         return view('pages.home', compact('cards', 'category'));
     }
@@ -64,7 +65,7 @@ class CardsController extends Controller
 
         flash()->success('Успешно!', 'Объявление отправлено');
 
-        return redirect($card->id);
+        return redirect()->route('toCard', [$card->category->id, $card->id]);
     }
 
     /**

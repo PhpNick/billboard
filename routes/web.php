@@ -12,8 +12,10 @@ Route::get('/', [CardsController::class, 'index']);
 
 Route::get('category/{category}', [CardsController::class, 'index']);
 
+Route::get('user/{user}', [CardsController::class, 'index']);
+
 Route::resource('cards', CardsController::class);
 
-Route::get('/category/{category}/card/{id}', [CardsController::class, 'show']);
+Route::get('/category/{category}/card/{id}', [CardsController::class, 'show'])->name('toCard');
 
 Route::post('photos', [CardsController::class, 'uploadPhotos']);
