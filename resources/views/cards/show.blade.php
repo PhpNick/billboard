@@ -24,13 +24,15 @@
 			<small>Рубрика: {{ $card->category->name }}</small>			
 		</div>
 
-		<div class="col-md-8">
+		<div class="col-md-8" id="photo-gallery">
 			@foreach($card->photos->chunk(4) as $set)
 
 				<div class="row">
 					@foreach($set as $photo)
 						<div class="col-md-3 col-sm-6 my-2">
-							<img src="/{{ $photo->thumbnail_path }}" alt="" class="rounded">
+							<a href="/{{ $photo->path }}" data-pswp-width="{{ $photo->width }}" data-pswp-height="{{ $photo->height }}" data-cropped="true" target="_blank">
+								<img src="/{{ $photo->thumbnail_path }}" alt="" class="rounded">
+							</a>
 						</div>
 					@endforeach					
 				</div>

@@ -20,3 +20,13 @@ FilePond.registerPlugin(
 	FilePondPluginFileValidateSize,
 	FilePondPluginFileValidateType
 	);
+
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+
+const lightbox = new PhotoSwipeLightbox({
+  gallery: '#photo-gallery',
+  children: 'a',
+  showHideAnimationType: 'fade',
+  pswpModule: () => import('photoswipe')
+});
+lightbox.init();

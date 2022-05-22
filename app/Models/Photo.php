@@ -14,7 +14,13 @@ class Photo extends Model
 
     protected $table = 'card_photos';
 
-    protected $fillable = ['name', 'path', 'thumbnail_path'];
+    protected $fillable = [
+                            'name', 
+                            'path', 
+                            'thumbnail_path',
+                            'width',
+                            'height'
+                            ];
 
     protected $baseDir = 'uploadedPhotos';
 
@@ -41,6 +47,9 @@ class Photo extends Model
     {
         
         $photo = Photo::named($file->getClientOriginalName());
+
+        $photo->width = Image::make($file)->width();
+        $photo->height = Image::make($file)->height();
 
         $photo->move($file);
 

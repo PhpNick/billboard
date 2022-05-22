@@ -21,6 +21,8 @@ class CreateCardPhotosTable extends Migration
 
             $table->string('name');
             $table->string('path');
+            $table->integer('width');
+            $table->integer('height');
             $table->string('thumbnail_path');
             $table->timestamps();
         });
