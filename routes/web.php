@@ -19,3 +19,5 @@ Route::resource('cards', CardsController::class);
 Route::get('/category/{category}/card/{id}', [CardsController::class, 'show'])->name('toCard');
 
 Route::post('photos', [CardsController::class, 'uploadPhotos']);
+
+Route::get('favorite/card/{card}', [CardsController::class, 'favorite'])->name('card.favorite');

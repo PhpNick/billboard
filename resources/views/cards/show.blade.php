@@ -12,14 +12,22 @@
 
 		<div class="col-md-4">
 
-			<h4><i class="fas fa-map-marker-alt"></i> {{ $regions::all()[$card->region] }}, {{ $card->city }}, {{ $card->street }}, {{ $card->zip }}</h4>
+			<h4><i class="fas fa-map-marker-alt text-success"></i> {{ $regions::all()[$card->region] }}, {{ $card->city }}, {{ $card->street }}, {{ $card->zip }}</h4>
 
-			<h3><strong><i class="fas fa-ruble-sign"></i> {{ $card->price }}</strong></h3>
+			<h3><strong>{{ $card->price }} <i class="fas fa-ruble-sign"></i></strong></h3>
 
 			<div>
 				{!! nl2br($card->description) !!}
 			</div>
-			<a href="#" class="btn btn-info"><i class="fas fa-heart"></i> Добавить в избранное</a>	
+			@guest
+				<a href="{{ route('login') }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Добавить в избранное</a>
+	        @else
+				@if ($card->hasBeenFavoritedBy(Auth::user()))
+					<a href="{{ route('card.favorite', $card) }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Убрать из избранного</a>
+				@else
+					<a href="{{ route('card.favorite', $card) }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Добавить в избранное</a>
+				@endif	        
+	        @endguest			
 			<hr>
 			<small>Рубрика: {{ $card->category->name }}</small>			
 		</div>

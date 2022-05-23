@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 class Card extends Model
 {
-    use HasFactory;
+    use HasFactory, Favoriteable;
 
     protected $fillable = [
         'title',

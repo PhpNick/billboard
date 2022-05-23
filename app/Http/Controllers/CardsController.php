@@ -97,7 +97,15 @@ class CardsController extends Controller
         $photo = Photo::where(compact('name'))->firstOrFail();
 
         $card->addPhoto($photo);
-    }    
+    }
+
+    public function favorite(Card $card)
+    {
+        
+        auth()->user()->toggleFavorite($card);
+
+        return back();
+    }        
 
     /**
      * Show the form for editing the specified resource.

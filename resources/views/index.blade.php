@@ -23,7 +23,7 @@
           <div class="card my-2">
             <img src="{{ $card->firstPhotoPath() }}" class="card-img-top" alt="">
             <div class="card-body">
-              <h5 class="card-title"><i class="fas fa-ruble-sign"></i> {{ $card->price }}</h5>
+              <h5 class="card-title">{{ $card->price }} <i class="fas fa-ruble-sign"></i></h5>
               <p class="card-text">{{ $card->title }}</p>
 
               <a href="/category/{{ $card->category->id }}/card/{{ $card->id }}" class="btn btn-info">Просмотр</a>
