@@ -29,7 +29,7 @@ class CardRequest extends FormRequest
             'city' => 'required',
             'street' => 'required',
             'zip' => 'required',
-            'price' => 'required|integer',
+            'price' => 'required|numeric',
             'description' => 'required',
         ];
     }
