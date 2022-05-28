@@ -12,6 +12,12 @@
 
     @if ($category->exists)
       <h1>Объявления из рубрики: {{ $category->name }}</h1>
+    @elseif ($user->exists)
+      @if (request()->favorites)
+        <h1>Избранные объявления пользователя: {{ $user->name }}</h1>
+      @else
+        <h1>Объявления пользователя: {{ $user->name }}</h1>
+      @endif
     @else
       <h1>Все объявления</h1>
     @endif

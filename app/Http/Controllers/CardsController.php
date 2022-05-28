@@ -26,7 +26,7 @@ class CardsController extends Controller
     {
         $cards = Card::getCards($category, $user, $request);
 
-        return view('index', compact('cards', 'category'));
+        return view('index', compact('cards', 'category', 'user'));
     }
 
     /**
