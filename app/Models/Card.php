@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
+use Illuminate\Http\Request;
 
 class Card extends Model
 {
@@ -42,14 +43,17 @@ class Card extends Model
         return $this->photos()->save($photo);
     }
 
-    public static function getCards(Category $category, User $user)
+    public static function getCards(Category $category, User $user, Request $request)
     {
         if ($category->exists) {
-        return static::where('category_id', $category->id)->get();
+            return static::where('category_id', $category->id)->get();
         }
 
         if ($user->exists) {
-        return static::where('user_id', $user->id)->get();
+            if ($request->favorites) {
+                return $user->getFavoriteItems(Card::class)->get();
+            }            
+            return static::where('user_id', $user->id)->get();
         }        
         
         return static::all();
@@ -60,5 +64,13 @@ class Card extends Model
         if($this->photos()->first())
             return '/' . $this->photos()->firstOrFail()->thumbnail_path;
         return "/img/no-image-available.jpg";
-    }            
+    } 
+
+    public function scopeFilter($query, CardFilters $filters)
+
+    {
+
+        return $filters->apply($query);
+
+    }               
 }

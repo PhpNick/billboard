@@ -22,9 +22,9 @@ class CardsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category, User $user)
+    public function index(Category $category, User $user, Request $request)
     {
-        $cards = Card::getCards($category, $user);
+        $cards = Card::getCards($category, $user, $request);
 
         return view('index', compact('cards', 'category'));
     }

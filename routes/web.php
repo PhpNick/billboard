@@ -12,7 +12,7 @@ Route::get('/', [CardsController::class, 'index']);
 
 Route::get('category/{category}', [CardsController::class, 'index']);
 
-Route::get('user/{user}', [CardsController::class, 'index']);
+Route::get('user/{user}/cards', [CardsController::class, 'index']);
 
 Route::resource('cards', CardsController::class);
 
