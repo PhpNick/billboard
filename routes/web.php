@@ -21,3 +21,5 @@ Route::get('/category/{category}/card/{id}', [CardsController::class, 'show'])->
 Route::post('photos', [CardsController::class, 'uploadPhotos']);
 
 Route::get('favorite/card/{card}', [CardsController::class, 'favorite'])->name('card.favorite');
+
+Route::get('is-favorited/card/{card}', [CardsController::class, 'isFavorited'])->name('card.isFavorited');

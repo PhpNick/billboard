@@ -1,5 +1,13 @@
 require('./bootstrap');
 
+window.Vue = require('vue').default;
+
+Vue.component('favorite-button-component', require('./components/FavoriteButtonComponent.vue').default);
+
+const app = new Vue({
+    el: '#app',
+});
+
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
@@ -16,10 +24,10 @@ import FilePondPluginFileValidateSize from 'filepond-plugin-file-validate-size';
 
 // Register plugins with FilePond
 FilePond.registerPlugin(
-	FilePondPluginImagePreview,
-	FilePondPluginFileValidateSize,
-	FilePondPluginFileValidateType
-	);
+    FilePondPluginImagePreview,
+    FilePondPluginFileValidateSize,
+    FilePondPluginFileValidateType
+    );
 
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 

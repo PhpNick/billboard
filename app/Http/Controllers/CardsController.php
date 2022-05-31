@@ -101,11 +101,22 @@ class CardsController extends Controller
 
     public function favorite(Card $card)
     {
-        
         auth()->user()->toggleFavorite($card);
 
-        return back();
-    }        
+        return $this->isFavorited($card);
+    }
+
+    public function isFavorited(Card $card)
+    {
+        if($card->hasBeenFavoritedBy(auth()->user()))
+            return response()->json([
+                'value' => 'Убрать из избранного'
+            ]);
+        else
+            return response()->json([
+                'value' => 'Добавить в избранное'
+            ]);
+    }             
 
     /**
      * Show the form for editing the specified resource.

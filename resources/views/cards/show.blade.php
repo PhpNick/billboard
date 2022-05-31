@@ -22,11 +22,7 @@
 			@guest
 				<a href="{{ route('login') }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Добавить в избранное</a>
 	        @else
-				@if ($card->hasBeenFavoritedBy(Auth::user()))
-					<a href="{{ route('card.favorite', $card) }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Убрать из избранного</a>
-				@else
-					<a href="{{ route('card.favorite', $card) }}" class="btn btn-info mt-2"><i class="fas fa-heart text-danger"></i> Добавить в избранное</a>
-				@endif	        
+	        	<favorite-button-component card="{{ $card->id }}"></favorite-button-component>
 	        @endguest			
 			<hr>
 			<small>Рубрика: {{ $card->category->name }}</small>			

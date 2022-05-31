@@ -88,7 +88,7 @@
 	</nav>	
 
 
-	<div class="container my-3">
+	<div class="container my-3" id="app">
 		@yield('content')
 	</div>
 

@@ -67,10 +67,7 @@ class Card extends Model
     } 
 
     public function scopeFilter($query, CardFilters $filters)
-
     {
-
         return $filters->apply($query);
-
     }               
 }
