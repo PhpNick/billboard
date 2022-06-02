@@ -18,8 +18,11 @@ class CardsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Главная страница со списком объявлений.
      *
+     * @param  \App\Models\Category  $category
+     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Category $category, User $user, Request $request)
@@ -30,7 +33,7 @@ class CardsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Страница с формой создания объявления.
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +43,7 @@ class CardsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Сохраняем новое объявление.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,8 +72,9 @@ class CardsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Страница с отдельным объявлением.
      *
+     * @param  int  $category
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -81,6 +85,12 @@ class CardsController extends Controller
         return view('cards.show', compact('card'));
     }
 
+    /**
+     * Загружаем фото на сервер.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Models\Photo $photo
+     */
     public function uploadPhotos(Request $request)
     {
         $this->validate($request, [
@@ -92,6 +102,12 @@ class CardsController extends Controller
         return $photo;
     }    
 
+    /**
+     * Добавляет фото к объявлению.
+     *
+     * @param  \App\Models\Card  $card
+     * @param  string  $name
+     */
     public function addPhoto(Card $card, $name)
     {
         $photo = Photo::where(compact('name'))->firstOrFail();
@@ -99,6 +115,12 @@ class CardsController extends Controller
         $card->addPhoto($photo);
     }
 
+    /**
+     * Добавляем объявление в избранные данного пользователя.
+     *
+     * @param  \App\Models\Card  $card
+     * @return  \Illuminate\Http\Response
+     */
     public function favorite(Card $card)
     {
         auth()->user()->toggleFavorite($card);

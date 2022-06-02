@@ -21,7 +21,11 @@ class Photo extends Model
                             'width',
                             'height'
                             ];
-
+    /**
+     * Папка, куда сохраняются фото.
+     *
+     * @var string
+     */
     protected $baseDir = 'uploadedPhotos';
 
     public function card()
@@ -29,11 +33,23 @@ class Photo extends Model
         return $this->belongsTo(Card::class);
     } 
 
+    /**
+     * Создаем новый экземпляр фото.
+     *
+     * @param  string  $name
+     * @return  self
+     */
     public static function named($name)
     {
         return (new static)->saveAs($name);
     } 
 
+    /**
+     * Заполняем поля класса Фото.
+     *
+     * @param  string  $name
+     * @return  self
+     */
     protected function saveAs($name)
     {
         $this->name = sprintf("%s-%s", time(), $name);
@@ -43,6 +59,12 @@ class Photo extends Model
         return $this;
     }
 
+    /**
+     * Перемещаем загруженное фото в папку.
+     *
+     * @param  UploadedFile  $file
+     * @return string
+     */
     public static function uploadPhotos(UploadedFile $file)
     {
         

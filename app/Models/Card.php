@@ -43,6 +43,14 @@ class Card extends Model
         return $this->photos()->save($photo);
     }
 
+    /**
+     * Возвращаем список объявлений.
+     *
+     * @param  \App\Models\Category  $category
+     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Http\Request  $request
+     * @return Builder
+     */
     public static function getCards(Category $category, User $user, Request $request)
     {
         if ($category->exists) {
@@ -59,15 +67,15 @@ class Card extends Model
         return static::all();
     }
 
+    /**
+     * Возвращаем путь до первого фото из объявления для показа на главной странице.
+     *
+     * @return string
+     */
     public function firstPhotoPath()
     {
         if($this->photos()->first())
             return '/' . $this->photos()->firstOrFail()->thumbnail_path;
         return "/img/no-image-available.jpg";
-    } 
-
-    public function scopeFilter($query, CardFilters $filters)
-    {
-        return $filters->apply($query);
     }               
 }
