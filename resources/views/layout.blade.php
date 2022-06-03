@@ -38,12 +38,12 @@
 	          @guest
 	          @if (Route::has('login'))
 	          <li><a class="dropdown-item" href="{{ route('login') }}">Мои объявления</a></li>
+	          <li><a class="dropdown-item" href="{{ route('login') }}">Избранные объявления</a></li>	          
 	          @endif
 	          @else
 	          <li><a class="dropdown-item" href="/user/{{  Auth::id() }}/cards">Мои объявления</a></li>
+	          <li><a class="dropdown-item" href="/user/{{  Auth::id() }}/cards/?favorites=1">Избранные объявления</a></li>	          
 	          @endguest
-	          
-	          <li><a class="dropdown-item" href="/user/{{  Auth::id() }}/cards/?favorites=1">Избранные объявления</a></li>
 	        </ul>
 	      </li>	      
 	    </ul>
