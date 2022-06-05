@@ -5,14 +5,14 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class IndexPageTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Тест загрузки главной страницы.
      *
-     * @return void
+     * @test
      */
-    public function test_example()
+    public function index_page_test()
     {
         $response = $this->get('/');
 
